@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Dog {
 
   // MODEL DEFINITION ////////////////////////
-  
+
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
@@ -49,8 +49,18 @@ public class Dog {
     this.breed = breed;
   }
 
-  public void setWiehgt(Integer weight) {
+  public void setWeight(Integer weight) {
     this.weight = weight;
   }
+
+  // OTHER ///////////////////////////////////
+
+  // Allows a readable printing of Dog to the console
+  public String toString(){
+      return "{id: "    + id      + ", " + 
+             "name: "  + name    + ", " + 
+             "breed: " + breed   + ", " + 
+             "weight: " + weight  + "} ";  
+   }
   
 }
