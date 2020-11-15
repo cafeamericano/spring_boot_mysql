@@ -32,7 +32,7 @@ public class MainController {
     return dogRepository.findAll();
   }
 
-  @GetMapping(path="/one")
+  @GetMapping(path="/one") //ex. http://localhost:8080/api/one?name=George
   public @ResponseBody Iterable<Dog> getOneDog(@RequestParam String name) {
     // This returns a JSON or XML with the dogs
     return dogRepository.findByName(name);
@@ -46,7 +46,7 @@ public class MainController {
     return myDog;
   }
 
-  @PostMapping(path="/add")
+  @PostMapping(path="/add") // ex. http://localhost:8080/api/add with body as {{"name": "George", "breed": "Golden Retriever", "weight": 60}}
   public @ResponseBody String addDog (@RequestBody Dog doggie) {
     Dog newDog = new Dog();
     newDog.setName(doggie.getName());
@@ -55,7 +55,7 @@ public class MainController {
     return "Saved";
   }
 
-  @PutMapping("/update/{id}") // ex: {"name": "George", "breed": "Golden", "weight": 105}
+  @PutMapping("/update/{id}") // ex. http://localhost:8080/api/update/2 with body as {"name": "Woofus", "breed": "Golden Retriever", "weight": 75}
   public ResponseEntity<Object> updateDog(@RequestBody Dog dog, @PathVariable Integer id) {
     Optional<Dog> dogOptional = dogRepository.findById(id);
     if (!dogOptional.isPresent())
@@ -65,7 +65,7 @@ public class MainController {
     return ResponseEntity.noContent().build();
   }
 
-  @DeleteMapping("/delete/{id}")
+  @DeleteMapping("/delete/{id}") // ex. http://localhost:8080/api/update/2
   public @ResponseBody String deleteStudent(@PathVariable Integer id) {
     dogRepository.deleteById(id);
     return "Deleted record.";
