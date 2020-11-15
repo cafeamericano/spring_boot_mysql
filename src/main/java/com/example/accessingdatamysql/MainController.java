@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,8 +55,8 @@ public class MainController {
     return "Saved";
   }
 
-  @PutMapping("/update/{id}")
-  public ResponseEntity<Object> updateStudent(@RequestBody Dog dog, @PathVariable Integer id) {
+  @PutMapping("/update/{id}") // ex: {"name": "George", "breed": "Golden", "weight": 105}
+  public ResponseEntity<Object> updateDog(@RequestBody Dog dog, @PathVariable Integer id) {
     Optional<Dog> dogOptional = dogRepository.findById(id);
     if (!dogOptional.isPresent())
       return ResponseEntity.notFound().build();
@@ -63,5 +64,11 @@ public class MainController {
     dogRepository.save(dog);
     return ResponseEntity.noContent().build();
   }
-  
+
+  @DeleteMapping("/delete/{id}")
+  public @ResponseBody String deleteStudent(@PathVariable Integer id) {
+    dogRepository.deleteById(id);
+    return "Deleted record.";
+  }
+
 }
