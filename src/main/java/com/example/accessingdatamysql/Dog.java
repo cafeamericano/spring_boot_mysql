@@ -6,36 +6,51 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+public class Dog {
+
+  // MODEL DEFINITION ////////////////////////
+  
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
-
   private String name;
+  private String breed;
+  private Integer weight;
 
-  private String email;
+  // GETTERS /////////////////////////////////
 
   public Integer getId() {
     return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public String getName() {
     return name;
   }
 
+  public String getBreed() {
+    return breed;
+  }
+
+  public Integer getWeight() {
+    return weight;
+  }
+
+  // SETTERS /////////////////////////////////
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public void setName(String name) {
     this.name = name;
   }
 
-  public String getEmail() {
-    return email;
+  public void setBreed(String breed){
+    this.breed = breed;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setWiehgt(Integer weight) {
+    this.weight = weight;
   }
+  
 }
